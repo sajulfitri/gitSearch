@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div id="custom-search-input">
+        <div class="input-group">
+          <input type="text" class="search-query form-control" placeholder="Search" (keyup.enter)='searchGitRepo($event)' />
+          <span class="input-group-btn">
+            <button type="button" disabled>
+              <span class="fa fa-search"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showResult">
+    <p>{{totalCount}} repository results
+    </p>
+    <p-table [value]="result" [paginator]="true" [rows]="10">
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>
+            <div class="row">
+              <div class="col-md-12 box">
+                <div class="details">
+                  <h4><a href="{{item.url}}">{{item.full_name}}</a></h4>
+                  <p>{{item.description}}</p>
+                  <p>Updated {{item.updated_at}}</p>
+                </div>
+                <div class="icons">
+                  <span><i class="fa fa-circle"></i> {{item.language}}</span>
+                  <span><i class="fa fa-star no-padding"></i> {{item.stargazers_count}}</span>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div class="blankslate" *ngIf="noResult">
+    <h3>
+      We couldn’t find any repositories matching '{{searchQuery}}'
+    </h3>
+  </div>
+</div>
