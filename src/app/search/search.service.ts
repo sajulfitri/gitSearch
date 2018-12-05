@@ -10,7 +10,7 @@ export class SearchService {
   private gitApi = 'https://api.github.com/search/repositories?';
   constructor(private http: HttpClient) { }
 
-  getSearchResult(searchQuery, page, pageLimit): Observable<any> {
+  getSearchResult(searchQuery, pageLimit): Observable<any> {
        return this.http.get(`${this.gitApi}q=${searchQuery}&per_page=${pageLimit}`);
 
   }

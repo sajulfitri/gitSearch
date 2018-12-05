@@ -7,22 +7,26 @@ import { TableModule } from 'primeng/table';
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './search/search.service';
 import { HttpModule } from '@angular/http';
+import { RoundedPipe } from './search/rounded.pipe';
 
 @NgModule({
    declarations: [
       AppComponent,
-      SearchComponent
+      SearchComponent,
+      RoundedPipe
+
+
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       TableModule,
-     HttpClientModule,
-     HttpModule
+      HttpClientModule,
+      HttpModule
    ],
-  providers: [
-    SearchService
-  ],
+   providers: [
+      SearchService
+   ],
    bootstrap: [
       AppComponent
    ]

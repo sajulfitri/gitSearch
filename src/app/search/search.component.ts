@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { SearchService } from './search.service';
 import { TableModule } from 'primeng/table';
+import { RoundedPipe } from './rounded.pipe';
 
 @Component({
   selector: 'app-search',
@@ -20,18 +21,20 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
   searchGitRepo(event) {
-    console.log(event);
+  const query = event.target.value;
 
-    const searchPromise = this.searchService.getSearchResult(event.target.value, 1, 100);
+    const searchPromise = this.searchService.getSearchResult(query, 100);
     searchPromise.subscribe(res => {
       console.log(res);
       this.result = res.items;
       this.totalCount = res.total_count;
       if (this.totalCount > 0) {
         this.showResult = true;
+        this.noResult = false;
       } else {
         this.noResult = true;
-        this.searchQuery = event.target.value;
+        this.showResult = false;
+        this.searchQuery = query;
       }
     });
 
