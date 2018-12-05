@@ -22,8 +22,8 @@ export class SearchComponent implements OnInit {
   }
   searchGitRepo(event) {
   const query = event.target.value;
-
-    const searchPromise = this.searchService.getSearchResult(query, 100);
+  const per_page = 100;
+    const searchPromise = this.searchService.getSearchResult(query, per_page);
     searchPromise.subscribe(res => {
       console.log(res);
       this.result = res.items;
